@@ -1,29 +1,78 @@
-## Overview
+# SilverStripeCMS Lessons
 
-Base project folder for a SilverStripe ([http://silverstripe.org](http://silverstripe.org)) installation. Required modules are installed via [http://github.com/silverstripe/recipe-cms](http://github.com/silverstripe/recipe-cms). For information on how to change the dependencies in a recipe, please have a look at [https://github.com/silverstripe/recipe-plugin](https://github.com/silverstripe/recipe-plugin). In addition, installer includes [theme/simple](https://github.com/silverstripe-themes/silverstripe-simple) as a default theme.
+This sample project follows the [SilverStripe.org lessons v4](https://www.silverstripe.org/learn/lessons/v4/)
 
-## Installation ##
+Each lessons has it's own branch and will be merged with master once each lessons is complete.
 
-`composer create-project silverstripe/installer my-app`
+## Installation
 
-See [Getting Started](https://docs.silverstripe.org/en/4/getting_started/) for more information.
+This is a SilverStripeCMS project. The installation is similar to a new SilverStripeCMS Project.
 
-## Bugtracker ##
+### Clone or Download this Project from GitHub
 
-Bugs are tracked on github.com ([framework issues](https://github.com/silverstripe/silverstripe-framework/issues),
-[cms issues](https://github.com/silverstripe/silverstripe-cms/issues)).
-Please read our [issue reporting guidelines](https://docs.silverstripe.org/en/4/contributing/issues_and_bugs/).
+See [Cloning a repository](https://help.github.com/en/articles/cloning-a-repository) for details on how to create a 
+local copy of this project on your computer.
 
-## Development and Contribution ##
+### Install the Dependencies
 
-If you would like to make changes to the SilverStripe core codebase, we have an extensive [guide to contributing code](https://docs.silverstripe.org/en/4/contributing/code/).
+The project uses SilverStripeCMS 4.5.1, which has a requirement for **PHP 7.1** or higher. 
+ Composer is highly recommended to install the dependencies.
 
-## Links ##
+From the root of the project run composer install from the command line:
 
- * [Changelogs](https://docs.silverstripe.org/en/4/changelogs/)
- * [Bugtracker: Framework](https://github.com/silverstripe/silverstripe-framework/issues)
- * [Bugtracker: CMS](https://github.com/silverstripe/silverstripe-cms/issues)
- * [Bugtracker: Installer](https://github.com/silverstripe/silverstripe-installer/issues)
- * [Forums](http://silverstripe.org/forums)
- * [Developer Mailinglist](https://groups.google.com/forum/#!forum/silverstripe-dev)
- * [License](./LICENSE)
+```shell script
+composer install
+```
+
+### Create an .env file
+
+Create an `.env` file from `.env.example`
+
+#### Linux / Mac
+
+```shell script
+cp .env.example .env
+```
+
+#### Windows
+
+```shell script
+copy .env.example .env
+```
+
+### Update the Database Settings
+
+Any SilverStripe Supported database can be used, in this example MySQL is given.
+
+#### MySql
+
+For MySql, create a database on your MySql server and add the settings to the
+**.env** file:
+
+```text
+# For a complete list of core environment variables see
+# https://docs.silverstripe.org/en/4/getting_started/environment_management/#core-environment-variables
+
+# Development environment
+SS_ENVIRONMENT_TYPE = "dev"
+
+# Default admin username and password
+SS_DEFAULT_ADMIN_USERNAME="admin"
+SS_DEFAULT_ADMIN_PASSWORD="password"
+
+# DB credentials, adjust to your local MySQL settings
+SS_DATABASE_CLASS="MySQLPDODatabase"
+SS_DATABASE_SERVER="localhost" 
+SS_DATABASE_USERNAME="root"
+SS_DATABASE_PASSWORD="MySQLpassword"
+SS_DATABASE_NAME="silverstripe"
+```
+
+## Contributions
+
+Feel free to leave comments for improvements. No contributions to the code is required. Feel free to fork or clone or 
+copy for your own use.
+
+## License
+
+The project is open-source software licensed under the [BSD License](LICENSE.md).
