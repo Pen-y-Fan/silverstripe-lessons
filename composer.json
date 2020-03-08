@@ -16,7 +16,7 @@
         "project-files-installed": [
             "app/.htaccess",
             "app/_config.php",
-            "app/_config/mysite.yml",
+            "app/_config/app.yml",
             "app/src/Page.php",
             "app/src/PageController.php"
         ],
@@ -30,5 +30,10 @@
         "process-timeout": 600
     },
     "prefer-stable": true,
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "SilverStripe\\Lessons\\": "app/src/"
+        }
+    }
 }
