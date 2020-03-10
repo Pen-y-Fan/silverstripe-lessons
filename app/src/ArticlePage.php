@@ -32,6 +32,10 @@ class ArticlePage extends Page
         'Categories' => ArticleCategory::class,
     ];
 
+    private static $has_many = [
+        'Comments' => ArticleComment::class,
+    ];
+
     private static $owns = [
         'Photo',
         'Brochure',
