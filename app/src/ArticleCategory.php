@@ -8,8 +8,6 @@ use SilverStripe\Forms\TextField;
 
 class ArticleCategory extends DataObject {
 
-    private static $table_name = 'ArticleCategory';
-
     private static $db = [
         'Title' => 'Varchar',
     ];

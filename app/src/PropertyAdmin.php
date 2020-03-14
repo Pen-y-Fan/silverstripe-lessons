@@ -15,5 +15,5 @@ class PropertyAdmin extends ModelAdmin
         Property::class,
     ];
 
-    private static $menu_icon = 'images/property.png';
+    private static $menu_icon = 'icons/property.png';
 }

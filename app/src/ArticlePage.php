@@ -13,20 +13,18 @@ use Page;
 
 class ArticlePage extends Page
 {
-    private static $can_be_root = false;
+	private static $can_be_root = false;
 
-    private static $table_name = 'ArticlePage';
-
-    private static $db = [
-        'Date' => 'Date',
-        'Teaser' => 'Text',
-        'Author' => 'Varchar',
-    ];
+	private static $db = [
+		'Date' => 'Date',
+		'Teaser' => 'Text',
+		'Author' => 'Varchar',
+	];
 
     private static $has_one = [
-        'Photo' => Image::class,
-        'Brochure' => File::class
-    ];
+  		'Photo' => Image::class,
+  		'Brochure' => File::class
+  	];
 
     private static $many_many = [
         'Categories' => ArticleCategory::class,
@@ -36,38 +34,37 @@ class ArticlePage extends Page
         'Comments' => ArticleComment::class,
     ];
 
-    private static $owns = [
-        'Photo',
-        'Brochure',
-    ];
 
-    public function getCMSFields()
-    {
-        $fields = parent::getCMSFields();
-        $fields->addFieldToTab('Root.Main', DateField::create('Date','Date of article'), 'Content');
-        $fields->addFieldToTab('Root.Main', TextareaField::create('Teaser')
-            ->setDescription('This is the summary that appears on the article list page.'),
-            'Content'
-        );
-        $fields->addFieldToTab('Root.Main', TextField::create('Author','Author of article'),'Content');
-        $fields->addFieldToTab(
-            'Root.Attachments',
-            $photo = UploadField::create('Photo')
-        );
-        $fields->addFieldToTab(
-            'Root.Attachments',
-            $brochure = UploadField::create(
-                'Brochure',
-                'Travel brochure, optional (PDF only)'
-            )
-        );
+  	private static $owns = [
+  		'Photo',
+  		'Brochure',
+  	];
 
-        $photo->setFolderName('travel-photos')
-            ->getValidator()->setAllowedExtensions(['png','gif','jpeg','jpg']);
+	public function getCMSFields()
+	{
+		$fields = parent::getCMSFields();
+		$fields->addFieldToTab('Root.Main', DateField::create('Date','Date of article'), 'Content');
+		$fields->addFieldToTab('Root.Main', TextareaField::create('Teaser')
+			->setDescription('This is the summary that appears on the article list page.'),
+			'Content'
+		);
+		$fields->addFieldToTab('Root.Main', TextField::create('Author','Author of article'),'Content');
+		$fields->addFieldToTab(
+			'Root.Attachments',
+			$photo = UploadField::create('Photo')
+		);
+		$fields->addFieldToTab(
+			'Root.Attachments',
+			$brochure = UploadField::create(
+				'Brochure',
+				'Travel brochure, optional (PDF only)'
+			)
+		);
 
-        $brochure
-            ->setFolderName('travel-brochures')
-            ->getValidator()->setAllowedExtensions(array('pdf'));
+		$photo->setFolderName('travel-photos');
+		$brochure
+			->setFolderName('travel-brochures')
+			->getValidator()->setAllowedExtensions(array('pdf'));
 
         $fields->addFieldToTab('Root.Categories', CheckboxSetField::create(
             'Categories',
@@ -75,17 +72,16 @@ class ArticlePage extends Page
             $this->Parent()->Categories()->map('ID','Title')
         ));
 
-        return $fields;
-    }
+		return $fields;
+	}
 
     public function CategoriesList()
     {
-        if(!($this->Categories()->exists())) {
-            return null;
+        if($this->Categories()->exists()) {
+            return implode(', ', $this->Categories()->column('Title'));
         }
 
-        return implode(', ', $this->Categories()->column('Title'));
-
+        return null;
     }
 
 }

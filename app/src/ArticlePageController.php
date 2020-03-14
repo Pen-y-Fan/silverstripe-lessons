@@ -2,14 +2,14 @@
 
 namespace SilverStripe\Lessons;
 
-use PageController;
-use SilverStripe\Forms\EmailField;
-use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\EmailField;
+use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\RequiredFields;
-use SilverStripe\Forms\TextareaField;
-use SilverStripe\Forms\TextField;
+use PageController;
 
 class ArticlePageController extends PageController
 {
@@ -76,4 +76,5 @@ class ArticlePageController extends PageController
 
         return $this->redirectBack();
     }
+
 }
