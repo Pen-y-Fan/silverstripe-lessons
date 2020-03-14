@@ -2,6 +2,8 @@
 
 namespace SilverStripe\Lessons;
 
+use SilverStripe\Control\Controller;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\FieldList;
@@ -16,7 +18,7 @@ class Region extends DataObject
 
     private static $db = [
         'Title' => 'Varchar',
-        'Description' => 'Text',
+        'Description' => 'HTMLText',
     ];
 
     private static $has_one = [
@@ -40,6 +42,11 @@ class Region extends DataObject
 
     private static $versioned_gridfield_extensions = true;
 
+    public function Link()
+    {
+        return $this->RegionsPage()->Link('show/'.$this->ID);
+    }
+
     public function getGridThumbnail()
     {
         if($this->Photo()->exists()) {
@@ -49,11 +56,16 @@ class Region extends DataObject
         return "(no image)";
     }
 
+    public function LinkingMode()
+    {
+        return Controller::curr()->getRequest()->param('ID') == $this->ID ? 'current' : 'link';
+    }
+
     public function getCMSFields()
     {
         $fields = FieldList::create(
             TextField::create('Title'),
-            TextareaField::create('Description'),
+            HtmlEditorField::create('Description'),
             $uploader = UploadField::create('Photo')
         );
 
