@@ -2,9 +2,9 @@
 
 namespace SilverStripe\Lessons;
 
-use PageController;
+use PageController;    
 
-class HomePageController extends PageController
+class HomePageController extends PageController 
 {
     public function LatestArticles($count = 3)
     {
@@ -21,4 +21,5 @@ class HomePageController extends PageController
             ))
             ->limit(6);
     }
+
 }

@@ -7,7 +7,6 @@ use SilverStripe\Control\HTTPRequest;
 
 class RegionsPageController extends PageController
 {
-
     private static $allowed_actions = [
         'show'
     ];
@@ -22,7 +21,7 @@ class RegionsPageController extends PageController
 
         return [
             'Region' => $region,
-            'Title' => $region->Title
+            'Title' => $region->Title,
         ];
     }
 
