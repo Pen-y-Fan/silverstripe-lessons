@@ -7,6 +7,8 @@
                 $Content
                 $Form
             </div>
+            $MetaTags(false)
+            <title>One Ring Rentals: $Title</title>
 
             <div class="sidebar gray col-sm-4">
                 <% if $Menu(2) %>
