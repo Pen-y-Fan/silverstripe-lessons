@@ -22,9 +22,10 @@ class ArticlePage extends Page
 	];
 
     private static $has_one = [
-  		'Photo' => Image::class,
-  		'Brochure' => File::class
-  	];
+        'Photo' => Image::class,
+        'Brochure' => File::class,
+        'Region' => Region::class,
+    ];
 
     private static $many_many = [
         'Categories' => ArticleCategory::class,
@@ -72,7 +73,13 @@ class ArticlePage extends Page
             $this->Parent()->Categories()->map('ID','Title')
         ));
 
-		return $fields;
+        $fields->addFieldToTab('Root.Main', DropdownField::create(
+            'RegionID',
+            'Region',
+            Region::get()->map('ID','Title')
+        )->setEmptyString('-- None --'), 'Content');
+
+        return $fields;
 	}
 
     public function CategoriesList()
