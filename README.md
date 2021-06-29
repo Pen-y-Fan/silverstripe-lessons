@@ -1,22 +1,22 @@
-# SilverStripeCMS Lessons
+# Silverstripe CMS Lessons
 
 This sample project follows the [SilverStripe.org lessons v4](https://www.silverstripe.org/learn/lessons/v4/)
 
-Each lessons has it's own branch and will be merged with master once each lessons is complete.
+All lessons have their own branch and have been merged with master once each lesson is complete.
 
 ## Installation
 
-This is a SilverStripeCMS project. The installation is similar to a new SilverStripeCMS Project.
+This is a Silverstripe CMS project. The installation is similar to a new Silverstripe CMS Project.
 
 ### Clone or Download this Project from GitHub
 
-See [Cloning a repository](https://help.github.com/en/articles/cloning-a-repository) for details on how to create a 
+See [Cloning a repository](https://help.github.com/en/articles/cloning-a-repository) for details on how to create a
 local copy of this project on your computer.
 
 ### Install the Dependencies
 
-The project uses SilverStripeCMS 4.5.1, which has a requirement for **PHP 7.1** or higher. 
- Composer is highly recommended to install the dependencies.
+The project uses Silverstripe CMS 4.8.0, which has a requirement for **PHP 7.1** or higher or **PHP 8.0**. Composer is
+required to install the dependencies.
 
 From the root of the project run composer install from the command line:
 
@@ -42,12 +42,11 @@ copy .env.example .env
 
 ### Update the Database Settings
 
-Any SilverStripe Supported database can be used, in this example MySQL is given.
+Any Silverstripe CMS Supported database can be used, MySQL in this example.
 
-#### MySql
+#### MySQL
 
-For MySql, create a database on your MySql server and add the settings to the
-**.env** file:
+For MySQL, specify a database **.env** file and Silverstripe will automatically create the database:
 
 ```text
 # For a complete list of core environment variables see
@@ -63,14 +62,42 @@ SS_DEFAULT_ADMIN_PASSWORD="password"
 # DB credentials, adjust to your local MySQL settings
 SS_DATABASE_CLASS="MySQLPDODatabase"
 SS_DATABASE_SERVER="localhost" 
-SS_DATABASE_USERNAME="root"
-SS_DATABASE_PASSWORD="MySQLpassword"
-SS_DATABASE_NAME="silverstripe"
+SS_DATABASE_USERNAME="<MySQLuser>"
+SS_DATABASE_PASSWORD="<MySQLpassword>"
+SS_DATABASE_NAME="silverstripe_lessons"
 ```
+
+## Build
+
+Either build from the command line or website
+
+### Command line
+
+#### Linux / Mac
+
+```shell script
+vendor/bin/sake dev/build?flush=all
+```
+
+#### Windows:
+
+```shell
+vendor\bin\sake.bat dev/build?flush=all
+```
+
+### Configure web service
+
+Silverstripe supports IIS and Apache, configure either as required to support PHP. Then optionally
+append `/dev/build?flush=all` to build your site.
+
+## Enjoy!
+
+Once built open the website, to login to the CMS append `/admin` to your url, login with the username and password you
+specified in the `.env` file.
 
 ## Contributions
 
-Feel free to leave comments for improvements. No contributions to the code is required. Feel free to fork or clone or 
+Feel free to leave comments for improvements. No contributions to the code is required. Feel free to fork or clone or
 copy for your own use.
 
 ## License
