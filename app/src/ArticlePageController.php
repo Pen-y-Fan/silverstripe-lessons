@@ -23,27 +23,27 @@ class ArticlePageController extends PageController
             $this,
             __FUNCTION__,
             FieldList::create(
-                TextField::create('Name',''),
-                EmailField::create('Email',''),
-                TextareaField::create('Comment','')
+                TextField::create('Name', ''),
+                EmailField::create('Email', ''),
+                TextareaField::create('Comment', '')
             ),
             FieldList::create(
-                FormAction::create('handleComment','Post Comment')
+                FormAction::create('handleComment', 'Post Comment')
                     ->setUseButtonTag(true)
                     ->addExtraClass('btn btn-default-color btn-lg')
             ),
-            RequiredFields::create('Name','Email','Comment')
+            RequiredFields::create('Name', 'Email', 'Comment')
         )
             ->addExtraClass('form-style');
 
-        foreach($form->Fields() as $field) {
+        foreach ($form->Fields() as $field) {
             $field->addExtraClass('form-control')
-                ->setAttribute('placeholder', $field->getName().'*');
+                ->setAttribute('placeholder', $field->getName() . '*');
         }
 
-        foreach($form->Fields() as $field) {
+        foreach ($form->Fields() as $field) {
             $field->addExtraClass('form-control')
-                ->setAttribute('placeholder', $field->getName().'*');
+                ->setAttribute('placeholder', $field->getName() . '*');
         }
 
         $data = $this->getRequest()->getSession()->get("FormData.{$form->getName()}.data");
@@ -60,8 +60,8 @@ class ArticlePageController extends PageController
             'Comment' => $data['Comment']
         ]);
 
-        if($existing->exists() && strlen($data['Comment']) > 20) {
-            $form->sessionMessage('That comment already exists! Spammer!','bad');
+        if ($existing->exists() && strlen($data['Comment']) > 20) {
+            $form->sessionMessage('That comment already exists! Spammer!', 'bad');
 
             return $this->redirectBack();
         }
@@ -72,7 +72,7 @@ class ArticlePageController extends PageController
         $comment->write();
 
         $session->clear("FormData.{$form->getName()}.data");
-        $form->sessionMessage('Thanks for your comment!','good');
+        $form->sessionMessage('Thanks for your comment!', 'good');
 
         return $this->redirectBack();
     }
